@@ -9,3 +9,9 @@ variable "name_prefix" {
   type        = string
   default     = "gmarkarian"
 }
+
+variable "actor" {
+  description = "GitHub actor who triggered the creation"
+  type        = string
+  default     = "actor"
+}
