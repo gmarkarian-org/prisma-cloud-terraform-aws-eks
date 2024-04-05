@@ -12,6 +12,9 @@ resource "aws_ecr_repository" "ecr" {
     encryption_type = "KMS"
   }
   force_delete = true
+  tags = {
+    git_org = "gmarkarian-org"
+  }
 }
 
 resource "aws_ecr_lifecycle_policy" "ecr" {
