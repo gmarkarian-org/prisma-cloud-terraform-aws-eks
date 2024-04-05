@@ -13,11 +13,11 @@ on:
       PRISMA_API_URL:
         description: 'Prisma Cloud API URL'
         required: true
-        default: 'https://api2.prismacloud.io'
+        default: 'https://api.eu.prismacloud.io'
       NAME_PREFIX:
         description: 'Prefix name for resources to be created: s3 bucket, vpc, eks, ec2, etc.'
         required: true
-        default: 'eks'
+        default: 'geks'
       WORKER_NODES_NUMBER:
         description: 'Number of worker nodes in eks_cluster'
         required: true
