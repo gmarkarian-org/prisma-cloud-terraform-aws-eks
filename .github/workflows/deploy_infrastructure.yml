@@ -9,7 +9,7 @@ on:
       AWS_REGION:
         description: 'AWS region in which to deploy the infrastructure'
         required: true
-        default: 'eu-west-3'
+        default: 'eu-central-1'
       PRISMA_API_URL:
         description: 'Prisma Cloud API URL'
         required: true
@@ -17,7 +17,7 @@ on:
       NAME_PREFIX:
         description: 'Prefix name for resources to be created: s3 bucket, vpc, eks, ec2, etc.'
         required: true
-        default: 'geks'
+        default: 'eks-gm'
       WORKER_NODES_NUMBER:
         description: 'Number of worker nodes in eks_cluster'
         required: true
@@ -37,7 +37,6 @@ on:
         description: 'Public ssh key to connect to ec2-bastion host'
         required: true
         default: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICFtzC5PPElUOqm3OqwxMGEyScLGVgMiZwpppsg1ziUi'
-
 jobs:
   deploy:
     name: Deploy AWS infrastructure to host EKS (VPC, EKS, Node Group, S3, etc.)
@@ -118,7 +117,7 @@ jobs:
         id: apply
         run: |
           terraform apply -var="region=${{ github.event.inputs.AWS_REGION }}" -var="name_prefix=${{ github.event.inputs.NAME_PREFIX }}-${{ env.ACTOR_PREFIX }}" -var="worker_nodes_desired_size=${{ github.event.inputs.WORKER_NODES_NUMBER }}" -var="worker_nodes_type=${{ github.event.inputs.WORKER_NODES_TYPE }}" -var="public_ssh_key=${{ github.event.inputs.PUBLIC_SSH_KEY }}" -auto-approve
-         env:
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
