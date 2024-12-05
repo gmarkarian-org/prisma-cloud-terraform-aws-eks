@@ -4,7 +4,7 @@ module "eks" {
   source = "git::https://github.com/terraform-aws-modules/terraform-aws-eks.git?ref=2cb1fac31b0fc2dd6a236b0c0678df75819c5a3b" # commit hash of version 19.21.0
 
   cluster_name    = local.cluster_name
-  cluster_version = "1.28"
+  cluster_version = "1.30"
 
   vpc_id                                = module.vpc.vpc_id
   subnet_ids                            = module.vpc.private_subnets
